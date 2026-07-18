@@ -27,6 +27,19 @@ def main() -> None:
     print("\nSummary stats (Sales, Quantity, Discount, Profit):")
     print(df[["Sales", "Quantity", "Discount", "Profit"]].describe())
 
+    losses = df[df["Profit"] < 0]
+    loss_by_group = (
+        losses.groupby(["Category", "Sub-Category"])
+        .agg(
+            loss_order_count=("Profit", "count"),
+            avg_discount=("Discount", "mean"),
+        )
+        .sort_values("loss_order_count", ascending=False)
+    )
+
+    print("\nLoss-making orders by Category and Sub-Category:")
+    print(loss_by_group)
+
 
 if __name__ == "__main__":
     main()

@@ -1,5 +1,4 @@
 # Superstore Analysis
-
 Exploratory analysis of retail sales data using Python, pandas, and matplotlib.
 
 ## What this project does
